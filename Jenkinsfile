@@ -8,6 +8,15 @@ pipeline {
         sh 'echo "building the aplication..."'
       }
     }
+    stage('Node') {
+  steps {
+    script {
+        def nodejsTool = tool name: 'node-20-tool', type: 'jenkins.plugins.nodejs.tools.NodeJSInstallation'
+        env.PATH = "${nodejsTool}/bin:${env.PATH}"
+    }
+    sh 'node --version'
+  }
+
     stage('Docker'){
       steps{
         
